@@ -10,7 +10,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText mEditText1, mEditText2;
-    float value1, value2;
+    float value1, value2, result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button4.setOnClickListener(this);
 
         mEditText1 = (EditText) findViewById(R.id.editText1);
-        //value1 = Float.parseFloat(mEditText1.getText().toString());
         mEditText2 = (EditText) findViewById(R.id.editText2);
-        //value2 = Float.parseFloat(mEditText2.getText().toString());
     }
 
     @Override
@@ -40,16 +38,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         value1 = Float.parseFloat(mEditText1.getText().toString());
         value2 = Float.parseFloat(mEditText2.getText().toString());
         Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtra("VALUE1", value1);
-        intent.putExtra("VALUE2", value2);
         if (v.getId() == R.id.button1) {
-            intent.putExtra("VALUE3", "+");
+            result = value1 + value2;
+            intent.putExtra("VALUE", result);
         } else if (v.getId() == R.id.button2) {
-            intent.putExtra("VALUE3", "-");
+            result = value1 - value2;
+            intent.putExtra("VALUE", result);
         } else if (v.getId() == R.id.button3) {
-            intent.putExtra("VALUE3", "*");
+            result = value1 * value2;
+            intent.putExtra("VALUE", result);
         } else if (v.getId() == R.id.button4) {
-            intent.putExtra("VALUE3", "/");
+            result = value1 / value2;
+            intent.putExtra("VALUE", result);
         }
         startActivity(intent);
     }
